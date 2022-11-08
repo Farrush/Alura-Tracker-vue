@@ -18,6 +18,7 @@ export default defineComponent({
     components: {
         Temporizador
     },
+    emits:['aoSalvarTarefa'],
     data(){
         return{
             nomeTarefa: ""
@@ -25,8 +26,7 @@ export default defineComponent({
     },
     methods: {
         finalizarTarefa(tempoDecorrido: number): void {
-            console.log("Tempo da tarefa:"+ tempoDecorrido)
-            console.log("Descrição da tarefa:"+ this.nomeTarefa)
+            this.$emit("aoSalvarTarefa", {duracaoEmSegundos: tempoDecorrido, descricao: this.nomeTarefa})
             this.nomeTarefa = ""
         }
     }
