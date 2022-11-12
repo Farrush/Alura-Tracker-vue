@@ -1,5 +1,5 @@
 # alura-tracker
-
+https://vercel.com/farrush/alura-tracker
 ## Project setup
 ```
 npm install
