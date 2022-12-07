@@ -14,6 +14,7 @@ import ITarefa from '../interfaces/ITarefa'
 import FormularioTask from '../components/Formulario.vue'
 import Tarefa from '../components/Tarefa.vue'
 import Box from '../components/Box.vue'
+
 export default defineComponent({
   name: 'App',
 	components: {
@@ -26,6 +27,7 @@ export default defineComponent({
       Tarefas: [] as ITarefa[],
     }
   },
+
   computed:{
     listaEstaVazia(): boolean{
       return this.Tarefas.length === 0
@@ -34,6 +36,8 @@ export default defineComponent({
   methods: {
     salvarTarefa(tarefa: ITarefa){
       this.Tarefas.push(tarefa)
+      
+
     }
   }
 });

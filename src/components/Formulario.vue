@@ -21,6 +21,7 @@
         <div class="column">
             <Temporizador @aoFinalizarTemporizador="finalizarTarefa"/>
         </div>
+
     </div>
 </div>
 </template>
@@ -39,7 +40,8 @@ export default defineComponent({
         }
     },
     components: {
-        Temporizador
+        Temporizador,
+
     },
     emits:['aoSalvarTarefa'],
     data(){
