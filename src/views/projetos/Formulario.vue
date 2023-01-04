@@ -15,9 +15,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useStore } from '@/store'
-import { ADICIONA_PROJETO, APAGA_PROJETO, EDITA_PROJETO, NOTIFICAR } from "@/store/tipo-mutacoes";
+//import { EDITA_PROJETO } from "@/store/tipo-mutacoes";
 import { TiposNotificacao } from '@/interfaces/INotificacao';
 import useNotificador from '@/hooks/notificador'
+import { ALTERAR_PROJETO, CADASTRAR_PROJETO, OBTER_PROJETOS } from '@/store/tipo-acoes';
 //import { notificacaoMixin } from '@/mixins/notificar'
 export default defineComponent({
     name:'FormularioVue',
@@ -49,24 +50,35 @@ export default defineComponent({
     methods:{
         salvar(){
             if(this.id){
-                this.store.commit(EDITA_PROJETO, {
+                this.store.dispatch(ALTERAR_PROJETO, {
                     id: this.id,
                     nome: this.nomeProjeto
                     })
+                        .then(() =>  {
+                            this.lidarComSucesso()
+                            this.store.dispatch(OBTER_PROJETOS)
+                        })
             }
             else
             {
                 if(this.nomeProjeto != ''){
-                    this.store.commit(ADICIONA_PROJETO, this.nomeProjeto)
-                this.notificar(TiposNotificacao.SUCESSO, "Novo projeto salvo", "Pronto! Seu projeto foi salvo C:")
+                    this.store.dispatch(CADASTRAR_PROJETO, this.nomeProjeto)
+                        .then(() => {
+                            this.lidarComSucesso()
+                            this.store.dispatch(OBTER_PROJETOS)
+                        })
                 }
                 else{
                     this.notificar(TiposNotificacao.FALHA, 'Projeto sem nome', 'Por falor, dê um nome ao seu projeto :(')
                 }
             }
+
+        },
+        lidarComSucesso(){
             this.nomeProjeto = ''
             this.$router.push('/projetos')
-        },
+            this.notificar(TiposNotificacao.SUCESSO, "Novo projeto salvo", "Pronto! Seu projeto foi salvo C:")
+        }
 
     },
     //mixins:[notificacaoMixin]

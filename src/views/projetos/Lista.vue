@@ -38,9 +38,10 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue'
 import { useStore } from '@/store'
-import { ADICIONA_PROJETO, APAGA_PROJETO, EDITA_PROJETO } from "@/store/tipo-mutacoes";
+//import { ADICIONA_PROJETO, APAGA_PROJETO, EDITA_PROJETO } from "@/store/tipo-mutacoes";
 import useNotificador from '@/hooks/notificador'
 import { TiposNotificacao } from '@/interfaces/INotificacao';
+import { OBTER_PROJETOS, DELETAR_PROJETO } from '@/store/tipo-acoes';
 export default defineComponent({
     name:'ListaVue',
     data(){
@@ -51,6 +52,7 @@ export default defineComponent({
     setup(){
         const {notificar} = useNotificador()
         const store = useStore()
+        store.dispatch(OBTER_PROJETOS)
         return{
             projetos: computed(() => store.state.projetos),
             store,
@@ -59,8 +61,12 @@ export default defineComponent({
     },
     methods:{
         deletarProjeto(id: string){
-             this.store.commit(APAGA_PROJETO, id)
-             this.notificar(TiposNotificacao.SUCESSO, 'Projeto Deletado', 'Seu projeto foi excluído')
+             this.store.dispatch(DELETAR_PROJETO, id)
+                .then(()=>{
+                    this.store.dispatch(OBTER_PROJETOS)
+                    this.notificar(TiposNotificacao.SUCESSO, 'Projeto Deletado', 'Seu projeto foi excluído')
+                })
+
         }
     }
 })

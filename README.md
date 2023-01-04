@@ -1,23 +1,18 @@
 # alura-tracker
 https://vercel.com/farrush/alura-tracker
-## Project setup
+
+## Requisitos globais
+```
+npm i -g json-server
+```
+
+## Como abrir e rodar o projeto:
 ```
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+json-server db.json
+
 npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
 ```
 
 <img src="./print.png">
