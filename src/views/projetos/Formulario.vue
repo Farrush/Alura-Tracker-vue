@@ -87,7 +87,13 @@ export default defineComponent({
 </script>
 
 <style scoped>
-    .projetos{
-        padding: 1.25rem;
+    form{
+        background-color:var(--bg-primario);
+    }
+    label, button{
+        color:var(--texto-primario);
+    }
+    button{
+        background-color: var(--botoes);
     }
 </style>

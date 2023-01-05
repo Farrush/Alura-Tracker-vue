@@ -1,6 +1,6 @@
 <template>
-
-        <router-link to="/projetos/novo" class="button">
+        <div class="caixa">
+        <router-link class="btn-novo-proj button" to="/projetos/novo">
             <span class="icon is-small">
                 <i class="fas fa-plus"></i>
             </span>
@@ -9,8 +9,8 @@
         <table class="table is-fullwidth">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>NOME</th>
+                    <th style="width:8%">ID</th>
+                    <th style="width:79%">NOME</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 </tr>
             </tbody>
         </table>
-
+        </div>
 </template>
 
 <script lang="ts">
@@ -73,7 +73,20 @@ export default defineComponent({
 </script>
 
 <style scoped>
-    .projetos{
-        padding: 1.25rem;
+    .caixa{
+        padding:20px;
+        background-color: var(--bg-primario);
+    }
+    .btn-novo-proj{
+        margin-bottom: 10px;
+    }
+    .button{
+        background-color: var(--botoes);
+        color: var(--texto-primario)
+    }
+    table, table th{
+        background-color: var(--bg-tarefa);
+        color: var(--texto-primario);
+        
     }
 </style>

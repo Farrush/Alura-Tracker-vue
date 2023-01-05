@@ -1,7 +1,8 @@
 import IProjeto from "./IProjeto";
 
 export default interface ITarefa {
+    id: number,
     duracaoEmSegundos: number,
-    desricao: string,
+    descricao: string,
     projeto: IProjeto
 }

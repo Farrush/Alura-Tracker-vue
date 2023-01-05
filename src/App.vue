@@ -45,11 +45,13 @@ export default defineComponent({
     --bg-primario: #FFF;
     --texto-primario: #000;
     --bg-tarefa: #fff9dc;
+    --botoes: rgb(123, 163, 231);
   }
   main.modoEscuro{
     --bg-primario: #2b2d42;
     --texto-primario:#ddd;
     --bg-tarefa: #30475e;
+    --botoes: rgb(78, 96, 147);
   }
   .conteudo{
     background-color: var(--bg-primario);

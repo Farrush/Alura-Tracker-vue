@@ -30,13 +30,15 @@ import { computed, defineComponent } from 'vue'
 import Temporizador from './Temporizador.vue'
 import { useStore } from 'vuex'
 import { key } from '@/store/index'
+import { CADASTRAR_TAREFA, OBTER_TAREFAS } from '@/store/tipo-acoes'
 
 export default defineComponent({
     name: "FormularioTask",
     setup(){
         const store = useStore(key)
         return {
-            projetos: computed(() => store.state.projetos)
+            projetos: computed(() => store.state.projetos),
+            store
         }
     },
     components: {
@@ -52,12 +54,19 @@ export default defineComponent({
     },
     methods: {
         finalizarTarefa(tempoDecorrido: number): void {
-            this.$emit("aoSalvarTarefa", {
+            /*this.$emit("aoSalvarTarefa", {
+                duracaoEmSegundos: tempoDecorrido,
+                descricao: this.nomeTarefa,
+                projeto: this.projetos.find(proj => proj.id == this.idProjeto)
+                })*/
+            this.store.dispatch(CADASTRAR_TAREFA, {
                 duracaoEmSegundos: tempoDecorrido,
                 descricao: this.nomeTarefa,
                 projeto: this.projetos.find(proj => proj.id == this.idProjeto)
                 })
-            this.nomeTarefa = ""
+                    .then(()=>{
+                        this.nomeTarefa = ""
+                    })
         }
     }
 })
