@@ -1,8 +1,12 @@
 {
   "projetos": [
     {
-      "nome": "Alura Tracker ",
-      "id": 2
+      "id": 2,
+      "nome": "Alura Tracker 2.0"
+    },
+    {
+      "nome": "Bytebank 2.0",
+      "id": 3
     }
   ],
   "tarefas": [
@@ -14,6 +18,15 @@
         "id": 2
       },
       "id": 1
+    },
+    {
+      "duracaoEmSegundos": 11,
+      "descricao": "Criando o Bytebank",
+      "projeto": {
+        "nome": "Bytebank 2.0",
+        "id": 3
+      },
+      "id": 2
     }
   ]
 }

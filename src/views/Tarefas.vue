@@ -1,16 +1,11 @@
 <template>
 	<FormularioTask @aoSalvarTarefa="salvarTarefa" />
 	<div class="lista">
-		<Tarefa 
-    v-for="(tarefa, index) in Tarefas" 
-    :key="index" :tarefa="tarefa" 
-    @aoTarefaClicada="selecionarTarefa"/>
+		<Tarefa v-for="(tarefa, index) in Tarefas" :key="index" :tarefa="tarefa" @aoTarefaClicada="selecionarTarefa" />
 		<Box v-if="listaEstaVazia">
 			<p class="list-placeholder">Você ainda não realizou tarefas hoje</p>
 		</Box>
-		<div class="modal" 
-    :class="{'is-active': tarefaSelecionada}"
-    v-if="tarefaSelecionada">
+		<div class="modal" :class="{'is-active': tarefaSelecionada}" v-if="tarefaSelecionada">
 			<div class="modal-background"></div>
 			<div class="modal-card">
 				<header class="modal-card-head">
@@ -18,12 +13,12 @@
 					<button class="delete" aria-label="close"></button>
 				</header>
 				<section class="modal-card-body">
-					<input class="input" v-model="tarefaSelecionada.descricao" type="text"/>
+					<input class="input" v-model="tarefaSelecionada.descricao" type="text" />
 				</section>
 				<footer class="modal-card-foot">
 					<button @click="alterarTarefa" class="button is-success">Salvar Alterações</button>
 					<button @click="fecharModal" class="button">Cancelar</button>
-          <button @click="deletarTarefa" class="button is-danger">Excluir</button>
+					<button @click="deletarTarefa" class="button is-danger">Excluir</button>
 				</footer>
 			</div>
 		</div>
@@ -52,11 +47,11 @@ export default defineComponent({
 		Tarefa,
 		Box,
 	},
-  data(){
-    return{
-      tarefaSelecionada: null as ITarefa | null
-    }
-  },
+	data() {
+		return {
+			tarefaSelecionada: null as ITarefa | null,
+		};
+	},
 	setup() {
 		const store = useStore();
 		store.dispatch(OBTER_PROJETOS);
@@ -74,25 +69,27 @@ export default defineComponent({
 	methods: {
 		salvarTarefa(tarefa: ITarefa) {
 			this.store.dispatch(CADASTRAR_TAREFA, tarefa);
+			console.log(tarefa)
 		},
-    selecionarTarefa(tarefa: ITarefa):void{
-      this.tarefaSelecionada = tarefa
-    },
-    fecharModal(){
-      this.tarefaSelecionada = null
-    },
-    alterarTarefa(){
-      this.store.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
-      .then(this.fecharModal)
-    },
-    deletarTarefa(){
-      this.store.dispatch(DELETAR_TAREFA, this.tarefaSelecionada)
-      .then(this.fecharModal)
-    }
+		selecionarTarefa(tarefa: ITarefa): void {
+			this.tarefaSelecionada = tarefa;
+		},
+		fecharModal() {
+			this.tarefaSelecionada = null;
+		},
+		alterarTarefa() {
+			this.store
+				.dispatch(ALTERAR_TAREFA, this.tarefaSelecionada)
+				.then(this.fecharModal);
+		},
+		deletarTarefa() {
+			this.store
+				.dispatch(DELETAR_TAREFA, this.tarefaSelecionada)
+				.then(this.fecharModal);
+		},
 	},
 });
 </script>
 
 <style scoped>
-
 </style>

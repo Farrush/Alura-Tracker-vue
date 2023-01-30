@@ -10,7 +10,7 @@ npm i -g json-server
 ```
 npm install
 
-json-server db.json
+json-server --watch db.json
 
 npm run serve
 ```
