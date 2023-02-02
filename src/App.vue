@@ -41,17 +41,24 @@ export default defineComponent({
   .lista{
     padding:1.25rem;
   }
+  html{
+    overflow-y: hidden;
+  }
   main {
     --bg-primario: #FFF;
     --texto-primario: #000;
     --bg-tarefa: #fff9dc;
     --botoes: rgb(123, 163, 231);
+    --bg-scrollbar: rgba(204, 171, 106, 0.607);
+    --thumb-scrollbar: rgba(235, 183, 100, 0.896);
   }
   main.modoEscuro{
     --bg-primario: #2b2d42;
     --texto-primario:#ddd;
     --bg-tarefa: #30475e;
     --botoes: rgb(78, 96, 147);
+    --bg-scrollbar: rgba(27, 41, 103, 0.889);
+    --thumb-scrollbar: rgba(29, 159, 234, 0.94);
   }
   .conteudo{
     background-color: var(--bg-primario);

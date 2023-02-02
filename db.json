@@ -7,6 +7,10 @@
     {
       "nome": "Bytebank 2.0",
       "id": 3
+    },
+    {
+      "nome": "Vue 3",
+      "id": 4
     }
   ],
   "tarefas": [
@@ -27,6 +31,15 @@
         "id": 3
       },
       "id": 2
+    },
+    {
+      "duracaoEmSegundos": 5,
+      "descricao": "Teste",
+      "projeto": {
+        "nome": "Vue 3",
+        "id": 4
+      },
+      "id": 3
     }
   ]
 }
